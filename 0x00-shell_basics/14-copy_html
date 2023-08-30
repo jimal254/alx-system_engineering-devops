@@ -1,12 +1,2 @@
 #!/bin/bash
-for file in *.html; do
-if [ -f "../$file" ]; then
-current_mtime=$(stat -c %Y "$file")
-parent_mtime=$(stat -c %Y "../$file")
-if [ "$current_mtime" -gt "$parent_mtime" ]; then
-cp "$file" "../$file"
-fi
-else
-cp "$file" "../$file"
-fi
-done
+cp -ru ./*.html ../
