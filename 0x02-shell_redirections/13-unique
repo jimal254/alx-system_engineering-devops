@@ -1,11 +1,6 @@
 #!/bin/bash
-
-# Read words from standard input and count their occurrences
 while read -r word; do
-    # Use grep to count the occurrences of the current word
     count=$(grep -o -w "$word" | wc -l)
-    
-    # If the word appears only once, print it
     if [ "$count" -eq 1 ]; then
         echo "$word"
     fi
