@@ -1,2 +1,6 @@
 #!/bin/bash
-cut -d ':' -f 1,6 /etc/passwd | sort
+
+# Read the /etc/passwd file, extract users and their home directories, and sort them by users
+while IFS=: read -r username _ _ _ _ home_directory _; do
+  echo "$username:$home_directory"
+done < /etc/passwd | sort -t: -k1
