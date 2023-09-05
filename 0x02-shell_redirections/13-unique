@@ -1,7 +1,2 @@
 #!/bin/bash
-while read -r word; do
-    count=$(grep -o -w "$word" | wc -l)
-    if [ "$count" -eq 1 ]; then
-        echo "$word"
-    fi
-done | sort
+sort | uniq -u
