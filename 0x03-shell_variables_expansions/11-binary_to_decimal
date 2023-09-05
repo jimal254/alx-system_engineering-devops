@@ -1,0 +1,15 @@
+#!/bin/bash
+binary="$BINARY"
+decimal=0
+power=1
+
+while [ -n "$binary" ]; do
+  digit="${binary: -1}"
+  if [ "$digit" = "1" ]; then
+    decimal=$((decimal + power))
+  fi
+  power=$((power * 2))
+  binary="${binary:0:-1}"
+done
+
+echo "$decimal"
