@@ -1,0 +1,6 @@
+# Edit the SSH client configuration file
+nano ~/.ssh/config
+
+Host *
+    IdentityFile ~/.ssh/school
+    PasswordAuthentication no
