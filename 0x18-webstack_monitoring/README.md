@@ -1,29 +1,30 @@
-#!/usr/bin/env bash
+# Webstack Monitoring
 
-# Import the Datadog repository key
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C7A7DA52AB3C4F70
+![](https://miro.medium.com/v2/resize:fit:720/format:webp/1*x4vbUHv1njGYqVB_1O4Ipg.jpeg)
 
-# Add the Datadog repository
-echo "deb https://apt.datadoghq.com/ stable 7" | sudo tee /etc/apt/sources.list.d/datadog.list
+“You cannot fix or improve what you cannot measure” is a famous saying in the Tech industry. In the age of the data-ism, monitoring how our Software systems are doing is an important thing. In this project, we will implement one of many tools to measure what is going on our servers.
 
-# Update the package list
-sudo apt-get update
+Web stack monitoring can be broken down into 2 categories:
 
-# Install the Datadog agent
-sudo apt-get install datadog-agent -y
+- Application monitoring: getting data about your running software and making sure it is behaving as expected
+- Server monitoring: getting data about your virtual or physical server and making sure they are not overloaded (could be CPU, memory, disk or network overload)
 
-# Check if installation was successful
-if [ $? -eq 0 ]; then
-    # Configure the Datadog agent
-    sudo sed -i "s/# logs_enabled:.*/logs_enabled: true/" /etc/datadog-agent/datadog.yaml
-    sudo sed -i "s/# logs_config:.*/logs_config:/" /etc/datadog-agent/datadog.yaml
-    sudo sed -i "s/#   - type:.*/  - type: file/" /etc/datadog-agent/datadog.yaml
-    sudo sed -i "s|#     path:.*|    path: /var/log/nginx/access.log|" /etc/datadog-agent/datadog.yaml
-    sudo sed -i "s/#     service:.*/    service: nginx/" /etc/datadog-agent/datadog.yaml
+## Learning Objectives
 
-    # Restart the Datadog agent
-    sudo service datadog-agent restart
-else
-    echo "Datadog agent installation failed."
-fi
+- Why is monitoring needed
+- What are the 2 main area of monitoring
+- What are access logs for a web server (such as Nginx)
+- What are error logs for a web server (such as Nginx)
 
+## Project requirements
+
+- Allowed editors: vi, vim, emacs
+- All your files will be interpreted on Ubuntu 16.04 LTS
+- All your files should end with a new line
+- A README.md file, at the root of the folder of the project, is mandatory
+- All your Bash script files must be executable
+- Your Bash script must pass Shellcheck (version 0.3.7) without any error
+- The first line of all your Bash scripts should be exactly #!/usr/bin/env bash
+- The second line of all your Bash scripts should be a comment explaining what is the script doing
+
+## Installation Guide
