@@ -1,35 +1,84 @@
-# Server Outage Incident report
-> By Jimmy Maina (jimal254)
-![](https://t3.ftcdn.net/jpg/04/92/09/72/240_F_492097246_yagE8x9Uk8M9IekPy7GBuE0x1Uoa7esD.jpg)
+Postmortem Report: The 3D Maze Game Saga
+Author: Jimmy Maina
+GitHub Repository: 3D Maze Game
+Published: September 2024
 
-6th  May 2024, we experienced server outage on all our server infrastructure which resulted in our clients inability to use our services and we sincerely apologize for the financial loss our clients have incurred during this period.
+Issue Summary
+Duration of the Outage:
+The project faced significant technical setbacks between August 10, 2024, and August 17, 2024. These issues caused delays in development but did not result in a full-scale outage.
 
-## Issue Summary
-![](https://www.cienotes.com/wp-content/uploads/2019/07/summaryblackboard.jpg)
+Impact:
+Core functionalities, including accurate wall rendering and SDL2 integration, were impaired. This led to slower development progress and occasional disruptions during testing. Developers experienced performance bottlenecks and rendering inaccuracies, affecting overall productivity and project timelines.
 
-onn  6th  May 2024 (10am GMT + 1), we experienced a server outage (downtime) on all of our server infrastructure which lasted for 37 minutes. As a result of this, our clients experienced a http `500 error` which had a __100% impact__ on their business as they were unable to access our services. The root cause was not properly testing out all implemented upgrades before pushing to production servers.
+Root Cause:
 
-## Timeline (all time in GMT + 1)
-![](https://www.ncbar.org/wp-content/uploads/2022/02/Timeline-Visual-300x145.png)
+Raycasting Algorithm Complexity:
 
-| Time (GMT + 1) | Actions |
-| -------------- | -------- |
-| 9:45 AM | Upgrades implementation begins |
-| 10:00AM | Server Outage begins |
-| 10:00AM | Pagers alerted on-call team |
-| 10:10AM | On-call team acknowledgement |
-| 10:15AM | Rollback initiation begins |
-| 10:20AM | Successful rollback|
-| 10:20AM | Server restart initiated|
-| 10:22AM | 100% of traffic back online |
+The algorithm, crucial for rendering walls, was more complex than anticipated. This complexity led to performance issues and inaccuracies in wall rendering.
+SDL2 Integration Issues:
 
-## Root cause
-![](https://blog.systemsengineering.com/hs-fs/hubfs/blog-files/Root%20Cause.jpg?width=600&name=Root%20Cause.jpg)
+Challenges with SDL2’s event handling and rendering efficiency created bottlenecks, affecting the user experience and game performance.
+Timeline
+August 10, 2024: Project repository established on GitHub with initial README.md outlining goals and installation instructions.
 
-At 9:45am (GMT + 1) server upgrade was initiated across all our production servers without first releasing on our test environments and performing all necessary unit testing. Part of the upgrade been shipped to production server required an authentication from a 3rd party software, this new implementation is not supported on the current version present on our servers which resulted in the downtime experienced. We were able to resolve this quickly by first performing a rollback the severs previous state thereafter upgrading the current version on our servers.
+August 11-13, 2024: Implemented a basic SDL2 window and began integrating the raycasting algorithm for wall rendering.
 
-## Preventive measures
-![](https://cdn-ccchn.nitrocdn.com/eoxXytShChgscESECFYcqdYPaOaOGMwn/assets/images/optimized/rev-fbc0c0e/wp-content/uploads/2021/06/prevent-incidents.png)
+August 14, 2024: Identified major issues with raycasting accuracy and SDL2 event handling. Performance slowdowns and rendering inaccuracies became apparent.
 
-- Pushing all intended changes 1st to our test environments before shipping to life server.
-- Increase the performance metrics threshold to alert on-call engineers on the event of possible server crash
+August 15, 2024: Initiated troubleshooting for SDL2 integration. Reviewed SDL2 documentation and ran small-scale test programs to better understand event handling and rendering.
+
+August 16, 2024: Focused on refining the raycasting algorithm based on feedback. Improved time management with a structured schedule and clear milestones.
+
+August 17, 2024: Implemented improvements to both the raycasting algorithm and SDL2 integration, resulting in better performance and accuracy.
+
+Root Cause and Resolution
+Root Cause:
+
+Raycasting Algorithm Complexity:
+
+The algorithm’s intricacy was underestimated, leading to difficulties with accurate wall rendering and performance inefficiencies.
+SDL2 Integration:
+
+Issues stemmed from a lack of familiarity with SDL2’s features and insufficient event-handling mechanisms.
+Resolution:
+
+Raycasting Algorithm:
+
+Dedicated time to researching and refining the algorithm. Leveraged online tutorials, documentation, and community forums to enhance accuracy and performance. Iterative testing and improvements led to a more robust implementation.
+SDL2 Integration:
+
+Conducted a thorough review of SDL2 documentation and engaged in extensive hands-on testing. Gained a deeper understanding of SDL2’s event handling and rendering processes, resulting in smoother performance.
+Corrective and Preventative Measures
+Improvements:
+
+Algorithm Optimization:
+
+Regularly review and refine the raycasting algorithm. Incorporate peer feedback and user testing results to ensure ongoing performance and accuracy.
+SDL2 Documentation and Practices:
+
+Maintain up-to-date SDL2 documentation and create a troubleshooting guide for common integration issues. Establish best practices for SDL2 integration to streamline future development.
+Tasks to Address Issues:
+
+Raycasting Algorithm:
+
+Continue refining based on feedback and performance metrics.
+Document the development process and key decisions.
+SDL2 Integration:
+
+Develop a comprehensive guide for SDL2 integration.
+Implement automated tests to catch performance issues early.
+Time Management:
+
+Create a detailed project timeline with milestones.
+Schedule regular progress reviews to stay on track.
+Code Merging and Collaboration:
+
+Establish a clear branching strategy for feature development.
+Encourage frequent code reviews and merges to minimize conflicts.
+Conclusion
+The 3D Maze Game project encountered significant challenges related to raycasting and SDL2 integration. Through dedicated research, improved documentation, and refined time management, these issues were addressed effectively. Moving forward, ongoing refinements and better documentation will help prevent similar issues and ensure smoother project progress.
+
+Additional Resources:
+
+Raycasting Algorithm Tutorial
+SDL2 Documentation
